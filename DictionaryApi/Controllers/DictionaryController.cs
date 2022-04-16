@@ -21,23 +21,14 @@ namespace DictionaryApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
-        public IEnumerable<string> GetWords(uint? length)
+        [Route("Length")]
+        public IEnumerable<string> GetWords(uint length)
         {
             return _dictionaryService.GetWords(length);
         }
 
         [HttpGet]
         [Route("Regex")]
-        public IEnumerable<string> GetWords(string pattern)
-        {
-            Regex regex = new(pattern);
-
-            return _dictionaryService.GetWords(regex);
-        }
-
-        [HttpGet]
-        [Route("Regexes")]
         public IEnumerable<string> GetWords([FromQuery]IEnumerable<string> patterns)
         {
             IEnumerable<Regex> regexes = patterns.Select(pattern => new Regex(pattern));
@@ -56,7 +47,7 @@ namespace DictionaryApi.Controllers
         [Route("Random")]
         public string? GetRandomWord(uint? length)
         {
-            return _dictionaryService.GetRandomWord(length);
+            return length.HasValue ? _dictionaryService.GetRandomWord(length.Value) : _dictionaryService.GetRandomWord();
         }
     }
 }

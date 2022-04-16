@@ -10,12 +10,12 @@ namespace DictionaryApi.Services
 
         IEnumerable<string> GetWords();
 
-        IEnumerable<string> GetWords(uint? length);
+        IEnumerable<string> GetWords(uint length);
 
         bool GetWordExists(string word);
 
         string GetRandomWord();
 
-        string? GetRandomWord(uint? length);
+        string? GetRandomWord(uint length);
     }
 }

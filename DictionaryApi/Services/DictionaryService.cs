@@ -21,7 +21,7 @@ namespace DictionaryApi.Services
             return words.Where(w => regexes.All(regex => regex.IsMatch(w)));
         }
 
-        public string? GetRandomWord(uint? length)
+        public string? GetRandomWord(uint length)
         {
             IEnumerable<string> words = GetWords(length);
 
@@ -36,7 +36,7 @@ namespace DictionaryApi.Services
             return words.ElementAt(number);
         }
 
-        public IEnumerable<string> GetWords(uint? length)
+        public IEnumerable<string> GetWords(uint length)
         {
             return words.Where(w => w.Length == length);
         }
